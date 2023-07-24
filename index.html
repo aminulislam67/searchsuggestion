@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auto-Suggestion Search Box</title>
+    <script>
+        function showSuggestions(str) {
+            if (str.length === 0) {
+                document.getElementById("suggestions").innerHTML = "";
+                return;
+            } else {
+                const xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("suggestions").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "get_suggestions.php?q=" + str, true);
+                xmlhttp.send();
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Auto-Suggestion Search Box</h1>
+    <form>
+        <label for="search">Search Player:</label>
+        <input type="text" id="search" onkeyup="showSuggestions(this.value)">
+    </form>
+    <div id="suggestions"></div>
+</body>
+</html>
