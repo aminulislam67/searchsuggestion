@@ -2,6 +2,11 @@
 <html>
 <head>
     <title>Auto-Suggestion Search Box</title>
+    <!-- Add the Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS styles (same as before) */
+    </style>
     <script>
         function showSuggestions(str) {
             if (str.length === 0) {
@@ -18,14 +23,28 @@
                 xmlhttp.send();
             }
         }
+
+        // Function to handle selecting a suggestion
+        function selectSuggestion(suggestion) {
+            document.getElementById("search").value = suggestion;
+            document.getElementById("suggestions").innerHTML = "";
+        }
     </script>
 </head>
 <body>
-    <h1>Auto-Suggestion Search Box</h1>
-    <form>
-        <label for="search">Search Player:</label>
-        <input type="text" id="search" onkeyup="showSuggestions(this.value)">
-    </form>
-    <div id="suggestions"></div>
+    <div class="container mt-5">
+        <h1 class="mb-4">Auto-Suggestion Search Box</h1>
+        <form class="form-inline">
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="search" class="sr-only">Search Player:</label>
+                <input type="text" class="form-control" id="search" placeholder="Search Player" onkeyup="showSuggestions(this.value)">
+            </div>
+        </form>
+        <div id="suggestions"></div>
+    </div>
+
+    <!-- Add the Bootstrap JS and jQuery (if needed) at the end of the body tag -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
